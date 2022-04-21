@@ -4,9 +4,9 @@
 
 {% block content %} 
     {% if latest_articles_list %}
-
+        <h1>Статьи</h1>
         {% for a in latest_articles_list %}
-            <a href="{% url 'medcentreApp:det' a.id %}">{{ a.art_title }}</a>
+            <h2><a href="{% url 'medcentreApp:det' a.id %}">{{ a.art_title }}</a></h2>
         {% endfor %}
 
     {%else%}
