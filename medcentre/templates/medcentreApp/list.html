@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %} Recent Articles {% endblock %}
+
+{% block content %} 
+    {% if latest_articles_list %}
+
+        {% for a in latest_articles_list %}
+            <a href="{% url 'medcentreApp:det' a.id %}">{{ a.art_title }}</a>
+        {% endfor %}
+
+    {%else%}
+        No Articles found :(
+    {% endif %}
+{% endblock %}

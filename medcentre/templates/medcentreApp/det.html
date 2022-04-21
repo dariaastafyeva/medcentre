@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %} {{article.art_title}} {% endblock %}
+
+{% block content %} 
+    <h2> {{article.art_title}} </h2>
+    <p>{{article.art_text}}</p>
+    <em>{{article.pub_date}}</em>
+    {%if article.was_published_recently%}
+        New Article!
+    {%endif%}
+    <hr>
+
+    {% if latest_comments_list %}
+        {%for c in latest_comments_list%}
+        <p>
+            <strong>{{c.author_name}}</strong>
+            <p>{{c.comment_text}}</p>
+        </p>
+        {%endfor%}
+    {%else%}
+    No comments found...
+    {%endif%}
+
+    <hr>
+    <form action="{% url 'medcentreApp:leave_comment' article.id %}" method="POST">
+        {% csrf_token %}
+        <input type="text" required="" placeholder="Your Name" name="name"><br>
+        <textarea name="text" required="" placeholder="Text of your comment" cols="30" rows="10"></textarea><br>
+        <button type="submit">Leave comment</button>
+    </form>
+{% endblock %}
